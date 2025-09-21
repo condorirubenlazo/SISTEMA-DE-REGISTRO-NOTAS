@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Registro de Calificaciones</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f4f7f9; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #333; }
+        .vista { display: none; }
+        .vista-activa { display: block; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        input[type="text"], input[type="number"], input[type="file"] { padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; width: calc(100% - 18px); }
+        button { padding: 10px 15px; margin: 10px 5px 10px 0; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        .btn-eliminar { background-color: #dc3545; }
+        .btn-eliminar:hover { background-color: #c82333; }
+        #btnExportar { background-color: #28a745; }
+        #btnExportar:hover { background-color: #218838; }
+        hr { border: 0; height: 1px; background-color: #ddd; margin: 20px 0; }
+        label { font-weight: bold; margin-bottom: 5px; display: block; }
+        #resultadoEstudiante ul { list-style-type: none; padding: 0; }
+        #resultadoEstudiante li { background-color: #e9ecef; margin-bottom: 8px; padding: 12px; border-radius: 4px; }
+    </style>
+    <!-- Carga de Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sistema de Registro de Calificaciones</h1>
+        <button onclick="cambiarVista('vistaDocente')">Soy Docente</button>
+        <button onclick="cambiarVista('vistaEstudiante')">Soy Estudiante</button>
+
+        <hr>
+
+        <!-- ================= VISTA DEL DOCENTE ================= -->
+        <div id="vistaDocente" class="vista">
+            <h2>Panel del Docente</h2>
+            <h3>Añadir Nuevo Estudiante</h3>
+            <form id="formEstudiante">
+                <input type="text" id="nombreEstudiante" placeholder="Nombre completo del estudiante" required>
+                <input type="text" id="idEstudiante" placeholder="Número de carnet (ID)" required>
+                <button type="submit">Añadir Estudiante</button>
+            </form>
+
+            <h3>Registro de Calificaciones</h3>
+            <div style="overflow-x:auto;">
+                <table id="tablaCalificaciones">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th><th>ID Estudiantil</th><th>Deberes</th><th>Tareas</th><th>Trabajos</th><th>Nota Trimestral</th><th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla"></tbody>
+                </table>
+            </div>
+            
+            <button id="btnGuardar">Guardar Cambios</button>
+            <button id="btnExportar">Exportar a JSON</button>
+        </div>
+
+        <!-- ================= VISTA DEL ESTUDIANTE ================= -->
+        <div id="vistaEstudiante" class="vista">
+            <h2>Consulta de Calificaciones</h2>
+            <div>
+                <label for="archivoCalificaciones">1. Carga el archivo (.json) proporcionado por tu docente:</label>
+                <input type="file" id="archivoCalificaciones" accept=".json" required>
+            </div>
+            <div>
+                <label for="estudianteIDBusqueda">2. Ingresa tu número de carnet (ID):</label>
+                <input type="text" id="estudianteIDBusqueda" placeholder="Tu número de carnet" required>
+            </div>
+            <button id="btnBuscarNotas">Ver Mis Notas</button>
+
+            <div id="resultadoEstudiante" style="margin-top: 20px;">
+                <!-- El resultado, incluyendo el gráfico, se mostrará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
