@@ -87,8 +87,33 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarTabla();
 });
 
+// NUEVA FUNCIÓN CON VALIDACIÓN
 function cambiarVista(vistaId) {
+    // Paso 1: Si el usuario quiere acceder a la vista del docente, pedimos credenciales.
+    if (vistaId === 'vistaDocente') {
+        const usuario = prompt("Por favor, ingresa tu usuario:");
+        // Si el usuario presiona "Cancelar", el prompt devuelve null. Salimos de la función.
+        if (usuario === null) return;
+
+        const contrasena = prompt("Por favor, ingresa tu contraseña:");
+        // Si el usuario presiona "Cancelar", el prompt devuelve null. Salimos de la función.
+        if (contrasena === null) return;
+
+        // Paso 2: Validamos las credenciales.
+        if (usuario.toLowerCase() === 'admin' && contrasena === '1234') {
+            // Si son correctas, continuamos para mostrar la vista.
+            console.log("Acceso de docente concedido.");
+        } else {
+            // Si son incorrectas, mostramos un error y detenemos todo.
+            alert("Usuario o contraseña incorrectos. Acceso denegado.");
+            return; // ¡Importante! Detiene la ejecución para no mostrar la vista.
+        }
+    }
+
+    // Paso 3: Si las credenciales fueron correctas (o si la vista es la del estudiante), mostramos la página.
     document.querySelectorAll('.vista').forEach(vista => vista.classList.remove('vista-activa'));
-    document.getElementById(vistaId).classList.add('vista-activa');
-    if (vistaId === 'vistaDocente') { document.getElementById('vistaDocente').classList.add('vista-activa'); }
+    const vistaActivar = document.getElementById(vistaId);
+    if (vistaActivar) {
+        vistaActivar.classList.add('vista-activa');
+    }
 }
