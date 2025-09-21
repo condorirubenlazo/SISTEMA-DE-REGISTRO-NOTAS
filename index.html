@@ -26,19 +26,15 @@
         #resultadoEstudiante ul { list-style-type: none; padding: 0; }
         #resultadoEstudiante li { background-color: #e9ecef; margin-bottom: 8px; padding: 12px; border-radius: 4px; }
     </style>
-    <!-- Carga de Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
     <div class="container">
         <h1>Sistema de Registro de Calificaciones</h1>
         <button onclick="cambiarVista('vistaDocente')">Soy Docente</button>
         <button onclick="cambiarVista('vistaEstudiante')">Soy Estudiante</button>
-
         <hr>
-
-        <!-- ================= VISTA DEL DOCENTE ================= -->
+        <!-- VISTA DEL DOCENTE -->
         <div id="vistaDocente" class="vista">
             <h2>Panel del Docente</h2>
             <h3>Añadir Nuevo Estudiante</h3>
@@ -47,42 +43,25 @@
                 <input type="text" id="idEstudiante" placeholder="Número de carnet (ID)" required>
                 <button type="submit">Añadir Estudiante</button>
             </form>
-
             <h3>Registro de Calificaciones</h3>
             <div style="overflow-x:auto;">
-                <table id="tablaCalificaciones">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th><th>ID Estudiantil</th><th>Deberes</th><th>Tareas</th><th>Trabajos</th><th>Nota Trimestral</th><th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTabla"></tbody>
-                </table>
+                <table id="tablaCalificaciones"><thead><tr><th>Nombre</th><th>ID Estudiantil</th><th>Deberes</th><th>Tareas</th><th>Trabajos</th><th>Nota Trimestral</th><th>Acciones</th></tr></thead><tbody id="cuerpoTabla"></tbody></table>
             </div>
-            
             <button id="btnGuardar">Guardar Cambios</button>
-            <button id="btnExportar">Exportar a JSON</button>
+            <button id="btnExportar">Generar JSON (para subir a GitHub)</button>
         </div>
 
-        <!-- ================= VISTA DEL ESTUDIANTE ================= -->
+        <!-- VISTA DEL ESTUDIANTE -->
         <div id="vistaEstudiante" class="vista">
             <h2>Consulta de Calificaciones</h2>
             <div>
-                <label for="archivoCalificaciones">1. Carga el archivo (.json) proporcionado por tu docente:</label>
-                <input type="file" id="archivoCalificaciones" accept=".json" required>
-            </div>
-            <div>
-                <label for="estudianteIDBusqueda">2. Ingresa tu número de carnet (ID):</label>
+                <label for="estudianteIDBusqueda">Ingresa tu número de carnet (ID) para ver tus notas:</label>
                 <input type="text" id="estudianteIDBusqueda" placeholder="Tu número de carnet" required>
             </div>
             <button id="btnBuscarNotas">Ver Mis Notas</button>
-
-            <div id="resultadoEstudiante" style="margin-top: 20px;">
-                <!-- El resultado, incluyendo el gráfico, se mostrará aquí -->
-            </div>
+            <div id="resultadoEstudiante" style="margin-top: 20px;"></div>
         </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
