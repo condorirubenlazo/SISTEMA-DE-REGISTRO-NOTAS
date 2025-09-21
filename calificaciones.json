@@ -1,0 +1,32 @@
+[
+  {
+    "nombre": "JUAN",
+    "id": "MAMANI",
+    "notas": {
+      "deberes": "70",
+      "tareas": "90",
+      "trabajos": "45",
+      "trimestral": "90"
+    }
+  },
+  {
+    "nombre": "RENE MEDINA",
+    "id": "6841282",
+    "notas": {
+      "deberes": "80",
+      "tareas": "58",
+      "trabajos": "67",
+      "trimestral": "85"
+    }
+  },
+  {
+    "nombre": "ROSSIO GUZMAN",
+    "id": "6841283",
+    "notas": {
+      "deberes": "89",
+      "tareas": "50",
+      "trabajos": "63",
+      "trimestral": "80"
+    }
+  }
+]
